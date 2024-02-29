@@ -1,15 +1,5 @@
-import { StaticImageData } from "next/image";
+import { IProduct } from "@/models/client/Product";
 
-type Product = {
-  src: StaticImageData;
-  label: string;
-  price: number;
-  id: number;
-  descrizione: string;
-  sku: string;
-  disponibile: boolean;
-  description: string;
-};
 export interface ProductState {
-  currentElem: Product;
+  currentElem: IProduct;
 }
