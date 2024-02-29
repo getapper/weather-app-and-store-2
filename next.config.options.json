@@ -1,4 +1,9 @@
 {
-  "rewrites": [],
+  "rewrites": [
+    {
+      "source": "/weather-app/:path*",
+      "destination": "/weather-app"
+    }
+  ],
   "env": []
 }

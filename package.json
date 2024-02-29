@@ -12,13 +12,22 @@
     "tsc-backend": "rimraf dist && npx ttsc --p tsconfig-backend.json"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.11",
+    "@reduxjs/toolkit": "1.4.0",
     "@types/node": "20.11.23",
     "@types/react": "18.2.61",
     "@types/react-dom": "18.2.19",
+    "axios": "0.19.2",
     "eslint-config-next": "13.2.3",
     "next": "13.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-redux": "8.0.2",
+    "react-router-dom": "6.3.0",
+    "redux-persist": "6.0.0",
+    "redux-saga": "1.1.3",
     "typescript": "4.9.5",
     "yup": "0.32.9"
   },

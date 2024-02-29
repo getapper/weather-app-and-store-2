@@ -55,7 +55,9 @@ export default function Home() {
           </div>
         </div>
         <>
-          <button>Wheater App</button>
+          <button onClick={() => (window.location.href = "/weather-app")}>
+            Wheater App
+          </button>
           <button>Store App</button>
         </>
       </main>
