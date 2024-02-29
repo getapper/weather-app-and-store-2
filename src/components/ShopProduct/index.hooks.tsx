@@ -1,3 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 export const useShopProduct = () => {
-  return {};
+  const navigate = useNavigate();
+
+  return { navigate };
 };

@@ -5,7 +5,7 @@ import ShopProduct from "@/components/ShopProduct";
 type ProductDetailsSceneProps = {};
 
 export const ProductDetailsScene = memo(({}: ProductDetailsSceneProps) => {
-  const { product } = useProductDetailsScene();
+  const { product, handleAddToCart } = useProductDetailsScene();
 
   return (
     <ShopProduct
@@ -14,6 +14,7 @@ export const ProductDetailsScene = memo(({}: ProductDetailsSceneProps) => {
       price={product?.price}
       sku={product?.sku}
       description={product?.description}
+      handleAddToCart={handleAddToCart}
     />
   );
 });

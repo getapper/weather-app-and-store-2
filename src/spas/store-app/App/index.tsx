@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import useAppHooks from "./index.hooks";
-import { ProductDetailsScene, StoreHomeScene } from "../scenes";
+import { CartScene, ProductDetailsScene, StoreHomeScene } from "../scenes";
 
 const App: React.FC = () => {
   const { theme, open, type, message, handleClose } = useAppHooks();
@@ -17,6 +17,7 @@ const App: React.FC = () => {
             path="/product-details/:id"
             element={<ProductDetailsScene />}
           />
+          <Route path="/cart" element={<CartScene />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

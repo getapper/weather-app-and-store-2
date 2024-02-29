@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { useShopProduct } from "./index.hooks";
 import Image, { StaticImageData } from "next/image";
-import { Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 
 type ShopProductProps = {
   src: StaticImageData;
@@ -11,6 +11,7 @@ type ShopProductProps = {
   onClick?: () => void;
   sku?: string;
   description?: string;
+  handleAddToCart?: () => void;
 };
 
 const ShopProduct: React.FC<ShopProductProps> = ({
@@ -21,8 +22,9 @@ const ShopProduct: React.FC<ShopProductProps> = ({
   onClick,
   sku,
   description,
+  handleAddToCart,
 }) => {
-  const {} = useShopProduct();
+  const { navigate } = useShopProduct();
 
   return (
     <>
@@ -30,8 +32,15 @@ const ShopProduct: React.FC<ShopProductProps> = ({
         <Image src={src} width={100} height={300} alt={alt} />
         <Typography>{label}</Typography>
         <Typography>{price}$</Typography>
-        {sku && <Typography>{sku}</Typography>}
-        {description && <Typography>{description}</Typography>}
+        {sku && description && (
+          <>
+            <Typography>{sku}</Typography>
+            <Typography>{description}</Typography>
+
+            <Button onClick={() => navigate("/")}>Torna alla home</Button>
+            <Button onClick={handleAddToCart}>Aggiungi al carrello</Button>
+          </>
+        )}
       </Stack>
     </>
   );

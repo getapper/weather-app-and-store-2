@@ -21,7 +21,7 @@ export const useStoreHomeScene = () => {
         price: 10,
         id: 0,
         descrizione: "bla bla bvaldasdhuhiuawdhadwaddaw",
-        sku: "",
+        sku: "sku",
         disponibile: true,
         description: description,
       },
@@ -31,7 +31,7 @@ export const useStoreHomeScene = () => {
         price: 15,
         id: 1,
         descrizione: "bla bla bvaldasdhuhiuawdhadwaddaw",
-        sku: "",
+        sku: "sku",
         disponibile: true,
         description: description,
       },
@@ -41,7 +41,7 @@ export const useStoreHomeScene = () => {
         price: 12,
         id: 2,
         descrizione: "bla bla bvaldasdhuhiuawdhadwaddaw",
-        sku: "",
+        sku: "sku",
         disponibile: false,
         description: description,
       },
@@ -51,7 +51,7 @@ export const useStoreHomeScene = () => {
         price: 11,
         id: 3,
         descrizione: "bla bla bvaldasdhuhiuawdhadwaddaw",
-        sku: "",
+        sku: "sku",
         disponibile: true,
         description: description,
       },
@@ -68,5 +68,5 @@ export const useStoreHomeScene = () => {
     [navigate, dispatch, products],
   );
 
-  return { products, openProductDetails };
+  return { products, openProductDetails, navigate };
 };

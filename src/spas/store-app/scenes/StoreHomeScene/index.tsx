@@ -1,12 +1,12 @@
 import React, { memo } from "react";
 import { useStoreHomeScene } from "./index.hooks";
 import ShopProduct from "@/components/ShopProduct";
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 
 type StoreHomeSceneProps = {};
 
 export const StoreHomeScene = memo(({}: StoreHomeSceneProps) => {
-  const { products, openProductDetails } = useStoreHomeScene();
+  const { products, openProductDetails, navigate } = useStoreHomeScene();
 
   return (
     <>
@@ -27,6 +27,7 @@ export const StoreHomeScene = memo(({}: StoreHomeSceneProps) => {
             />
           ))}
         </Grid>
+        <Button onClick={() => navigate("/cart")}>Vai al carrello</Button>
       </Grid>
     </>
   );
