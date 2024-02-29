@@ -3,6 +3,10 @@
     {
       "source": "/weather-app/:path*",
       "destination": "/weather-app"
+    },
+    {
+      "source": "/store-app/:path*",
+      "destination": "/store-app"
     }
   ],
   "env": []
