@@ -5,29 +5,33 @@ import { Stack, Typography } from "@mui/material";
 
 type ShopProductProps = {
   src: StaticImageData;
-  width;
-  heigth;
   alt?: string;
   label: string;
   price: number;
+  onClick?: () => void;
+  sku?: string;
+  description?: string;
 };
 
 const ShopProduct: React.FC<ShopProductProps> = ({
   src,
-  width,
-  heigth,
   alt = "Product img",
   label,
   price,
+  onClick,
+  sku,
+  description,
 }) => {
   const {} = useShopProduct();
 
   return (
     <>
-      <Stack direction="column" spacing={1}>
-        <Image src={src} width={width} height={heigth} alt={alt} />
+      <Stack direction="column" spacing={1} onClick={onClick}>
+        <Image src={src} width={100} height={300} alt={alt} />
         <Typography>{label}</Typography>
         <Typography>{price}$</Typography>
+        {sku && <Typography>{sku}</Typography>}
+        {description && <Typography>{description}</Typography>}
       </Stack>
     </>
   );
