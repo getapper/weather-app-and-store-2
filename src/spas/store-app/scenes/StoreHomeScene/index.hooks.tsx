@@ -72,14 +72,23 @@ export const useStoreHomeScene = () => {
 
   const handleAddToCart = useCallback(
     (product) => {
-      dispatch(actions.addItemToCart(product));
+      if (product.disponibile) {
+        dispatch(actions.addItemToCart(product));
 
-      dispatch(
-        actions.setFeedback({
-          type: "success",
-          message: "Prodotto aggiunto al carrello",
-        }),
-      );
+        dispatch(
+          actions.setFeedback({
+            type: "success",
+            message: "Prodotto aggiunto al carrello",
+          }),
+        );
+      } else {
+        dispatch(
+          actions.setFeedback({
+            type: "error",
+            message: "Prodotto non disponibile",
+          }),
+        );
+      }
     },
     [dispatch],
   );
