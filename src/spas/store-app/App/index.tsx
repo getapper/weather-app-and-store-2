@@ -3,6 +3,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import useAppHooks from "./index.hooks";
 import { CartScene, ProductDetailsScene, StoreHomeScene } from "../scenes";
+import { AppSnackbar } from "@/components/AppSnackbar";
 
 const App: React.FC = () => {
   const { theme, open, type, message, handleClose } = useAppHooks();
@@ -20,6 +21,12 @@ const App: React.FC = () => {
           <Route path="/cart" element={<CartScene />} />
         </Routes>
       </BrowserRouter>
+      <AppSnackbar
+        open={open}
+        message={message}
+        severity={type}
+        onClose={handleClose}
+      />
     </ThemeProvider>
   );
 };

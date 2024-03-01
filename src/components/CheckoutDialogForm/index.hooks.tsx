@@ -10,7 +10,7 @@ const addressSchema = yup.object({
   via: yup.string().required(),
   citta: yup.string().required(),
   stato: yup.string().required(),
-  cap: yup.string().max(4).required(),
+  cap: yup.string().length(6).required(),
 });
 
 const schema = yup.object({
@@ -18,9 +18,15 @@ const schema = yup.object({
   fatturazione: addressSchema.required(),
   nome: yup.string().required().min(2),
   cognome: yup.string().required().min(2),
-  numeroCarta: yup.number().required(),
+  numeroCarta: yup
+    .string()
+    .length(16, "La stringa deve essere lunga 16 caratteri")
+    .matches(/^\d+$/, "Deve essere un numero"),
   scadenza: yup.date().required(),
-  cvv: yup.number().required().min(100).max(999),
+  cvv: yup
+    .string()
+    .length(3, "La stringa deve essere lunga 3 caratteri")
+    .matches(/^\d+$/, "Deve essere un numero"),
 });
 
 type CheckoutDialogFormData = {
@@ -76,10 +82,15 @@ export const useCheckoutDialogForm = () => {
           dispatch(actions.setCheckoutDialogIsOpen(false));
 
           const result = await fakeExternalServiceCheckout(data);
-
-          result === "OK"
-            ? window.alert(`Transazione avvenuta con successo`)
-            : window.alert(`Ops.. qualcosa è andato storto`);
+          dispatch(
+            actions.setFeedback({
+              type: result === "OK" ? "success" : "error",
+              message:
+                result === "OK"
+                  ? "Transazione avvenuta con successo"
+                  : "Ops.. qualcosa è andato storto",
+            }),
+          );
           const order = { ...data, total: cartTotal, cart };
           dispatch(actions.addOrder(order));
           dispatch(actions.setCurrentOrder(order));

@@ -55,8 +55,10 @@ export const OrderRecapDialog = memo(({}: OrderRecapDialogProps) => {
             </Typography>
             <Divider sx={{ my: 2 }} />
             <Typography fontWeight={700}>Dettagli carta</Typography>
-            <Typography>{"numero carta " + order.numeroCarta + " "}</Typography>
-            <Typography>{"cvv " + order.cvv + " "} </Typography>
+            <Typography>
+              {"numero carta: " + order.numeroCarta + " "}
+            </Typography>
+            <Typography>{"cvv: " + order.cvv + " "} </Typography>
             <Typography>
               {"in scadenza: " + moment(order.scadenza).format("MM/YYYY")}
             </Typography>

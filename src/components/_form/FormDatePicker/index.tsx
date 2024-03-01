@@ -28,6 +28,8 @@ export const FormDatePicker = memo(({ name, label }: FormDatePickerProps) => {
       <DatePicker
         label={label}
         value={value}
+        views={["year", "month"]}
+        openTo="year"
         onChange={setValue}
         renderInput={(params) => (
           <TextField {...params} error={!!error} helperText={error} />

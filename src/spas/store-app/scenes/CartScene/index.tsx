@@ -51,6 +51,7 @@ export const CartScene = memo(({}: CartSceneProps) => {
           variant="contained"
           onClick={showCheckoutDialog}
           sx={{ textTransform: "none", p: 5, fontSize: 15 }}
+          disabled={!products.length}
         >
           <ShoppingCartCheckoutIcon sx={{ mr: 2 }} /> Effettua il checkout
         </Button>
