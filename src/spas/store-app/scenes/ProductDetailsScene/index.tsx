@@ -17,6 +17,7 @@ export const ProductDetailsScene = memo(({}: ProductDetailsSceneProps) => {
         price={product?.price}
         sku={product?.sku}
         description={product?.description}
+        disponibile={product.disponibile}
         handleAddToCart={handleAddToCart}
       />
       <NavButton path="/cart" label="Vai al carrello" />

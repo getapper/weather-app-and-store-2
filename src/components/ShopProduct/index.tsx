@@ -11,6 +11,7 @@ type ShopProductProps = {
   onClick?: () => void;
   sku?: string;
   description?: string;
+  disponibile?: boolean;
   handleAddToCart?: () => void;
 };
 
@@ -23,6 +24,7 @@ const ShopProduct: React.FC<ShopProductProps> = ({
   sku,
   description,
   handleAddToCart,
+  disponibile,
 }) => {
   const { navigate } = useShopProduct();
 
@@ -36,10 +38,16 @@ const ShopProduct: React.FC<ShopProductProps> = ({
           <>
             <Typography>{sku}</Typography>
             <Typography>{description}</Typography>
-
-            <Button onClick={handleAddToCart}>Aggiungi al carrello</Button>
           </>
         )}
+        {disponibile !== undefined && (
+          <Typography sx={{ color: disponibile ? "green" : "red" }}>
+            {disponibile ? "Disponibile" : "Non diponibile"}
+          </Typography>
+        )}
+        <Button onClick={handleAddToCart} disabled={!disponibile}>
+          Aggiungi al carrello
+        </Button>
       </Stack>
     </>
   );
