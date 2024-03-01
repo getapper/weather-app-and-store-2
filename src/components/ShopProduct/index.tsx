@@ -37,7 +37,6 @@ const ShopProduct: React.FC<ShopProductProps> = ({
             <Typography>{sku}</Typography>
             <Typography>{description}</Typography>
 
-            <Button onClick={() => navigate("/")}>Torna alla home</Button>
             <Button onClick={handleAddToCart}>Aggiungi al carrello</Button>
           </>
         )}

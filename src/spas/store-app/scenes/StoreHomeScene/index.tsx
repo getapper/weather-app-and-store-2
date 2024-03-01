@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { useStoreHomeScene } from "./index.hooks";
 import ShopProduct from "@/components/ShopProduct";
 import { Button, Grid, Typography } from "@mui/material";
+import { NavButton } from "@/components/NavButton";
 
 type StoreHomeSceneProps = {};
 
@@ -27,7 +28,7 @@ export const StoreHomeScene = memo(({}: StoreHomeSceneProps) => {
             />
           ))}
         </Grid>
-        <Button onClick={() => navigate("/cart")}>Vai al carrello</Button>
+        <NavButton path="/cart" label="Vai al carrello" />
       </Grid>
     </>
   );
