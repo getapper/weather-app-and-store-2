@@ -45,9 +45,11 @@ const ShopProduct: React.FC<ShopProductProps> = ({
             {disponibile ? "Disponibile" : "Non diponibile"}
           </Typography>
         )}
-        <Button onClick={handleAddToCart} disabled={!disponibile}>
-          Aggiungi al carrello
-        </Button>
+        {sku && description && (
+          <Button onClick={handleAddToCart} disabled={!disponibile}>
+            Aggiungi al carrello
+          </Button>
+        )}
       </Stack>
     </>
   );
