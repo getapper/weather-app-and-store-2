@@ -16,16 +16,12 @@ export const CartScene = memo(({}: CartSceneProps) => {
 
   return (
     <>
-      <Stack direction="row" p={2} justifyContent="space-between">
-        <Typography variant="h2">Carrello:</Typography>
-        <NavButton />
-      </Stack>
-      <Stack spacing={5} alignItems="center">
+      <Stack spacing={5} alignItems="center" mt={5}>
         <Stack
           direction="column"
           sx={{ overflowY: "scroll" }}
-          height={600}
-          width={600}
+          height={500}
+          width={800}
           boxShadow={2}
           spacing={2}
           mx={100}

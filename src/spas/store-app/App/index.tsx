@@ -4,6 +4,9 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import useAppHooks from "./index.hooks";
 import { CartScene, ProductDetailsScene, StoreHomeScene } from "../scenes";
 import { AppSnackbar } from "@/components/AppSnackbar";
+import { NavButton } from "@/components/NavButton";
+import ShopProduct from "@/components/ShopProduct";
+import { Header } from "@/components/Header";
 
 const App: React.FC = () => {
   const { theme, open, type, message, handleClose } = useAppHooks();
@@ -12,6 +15,7 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter basename="/store-app">
+        <Header />
         <Routes>
           <Route path="/" element={<StoreHomeScene />} />
           <Route

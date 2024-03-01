@@ -12,26 +12,7 @@ export const StoreHomeScene = memo(({}: StoreHomeSceneProps) => {
 
   return (
     <>
-      <Grid container px={10}>
-        <Grid
-          item
-          display="flex"
-          justifyContent="space-between"
-          xs={12}
-          px={3}
-          py={4}
-        >
-          <Typography variant="h2">Shop</Typography>
-          <NavButton
-            variant="contained"
-            path="/cart"
-            label="Vai al carrello"
-            icon={<ShoppingCartIcon />}
-          />
-        </Grid>
-        <Grid item my={5}>
-          <Divider />
-        </Grid>
+      <Grid container px={10} mt={10}>
         <Grid container item>
           {products.map((elem, i) => (
             <Grid item key={i} md={6} xs={12} lg={3}>

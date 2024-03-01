@@ -13,15 +13,6 @@ export const ProductDetailsScene = memo(({}: ProductDetailsSceneProps) => {
 
   return (
     <>
-      <Stack direction="row" justifyContent={"space-between"} display={"flex"}>
-        <NavButton />
-        <NavButton
-          variant="contained"
-          path="/cart"
-          label="Vai al carrello"
-          icon={<ShoppingCartIcon />}
-        />
-      </Stack>
       <ShopProduct
         src={product?.src}
         label={product?.label}
