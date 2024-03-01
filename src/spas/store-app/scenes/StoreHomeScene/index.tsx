@@ -8,7 +8,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 type StoreHomeSceneProps = {};
 
 export const StoreHomeScene = memo(({}: StoreHomeSceneProps) => {
-  const { products, openProductDetails, navigate } = useStoreHomeScene();
+  const { products, openProductDetails } = useStoreHomeScene();
 
   return (
     <>
