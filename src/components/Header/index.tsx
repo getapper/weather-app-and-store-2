@@ -16,8 +16,9 @@ export const Header = memo(({}: HeaderProps) => {
         alignItems: "center",
         justifyContent: "space-between",
         bgcolor: "lightblue",
+        boxShadow: 2,
+        position: "sticky",
       }}
-      boxShadow={2}
     >
       <Typography variant="h1">my shop</Typography>
       <Stack spacing={2} p={2}>

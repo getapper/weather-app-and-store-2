@@ -5,7 +5,7 @@ import useAppHooks from "./index.hooks";
 import { CartScene, ProductDetailsScene, StoreHomeScene } from "../scenes";
 import { AppSnackbar } from "@/components/AppSnackbar";
 import { NavButton } from "@/components/NavButton";
-import ShopProduct from "@/components/ShopProduct";
+import Product from "@/components/Product";
 import { Header } from "@/components/Header";
 
 const App: React.FC = () => {

@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { useProductDetailsScene } from "./index.hooks";
-import ShopProduct from "@/components/ShopProduct";
+import Product from "@/components/Product";
 import { NavButton } from "@/components/NavButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Button, Stack } from "@mui/material";
@@ -13,7 +13,7 @@ export const ProductDetailsScene = memo(({}: ProductDetailsSceneProps) => {
 
   return (
     <>
-      <ShopProduct
+      <Product
         src={product?.src}
         label={product?.label}
         price={product?.price}

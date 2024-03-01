@@ -6,13 +6,14 @@ export const useProductDetailsScene = () => {
   const product = useSelector(selectors.getCurrentProduct);
   const dispatch = useDispatch();
   const handleAddToCart = useCallback(() => {
+    dispatch(actions.addItemToCart(product));
+
     dispatch(
       actions.setFeedback({
         type: "success",
         message: "Prodotto aggiunto al carrello",
       }),
     );
-    dispatch(actions.addItemToCart(product));
   }, [dispatch, product]);
   return { product, handleAddToCart };
 };

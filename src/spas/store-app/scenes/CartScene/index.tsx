@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { useCartScene } from "./index.hooks";
-import ShopProduct from "@/components/ShopProduct";
+import Product from "@/components/Product";
 import { NavButton } from "@/components/NavButton";
 import { Button, Stack, Typography } from "@mui/material";
 import { CheckoutDialogForm } from "@/components/CheckoutDialogForm";
@@ -27,11 +27,12 @@ export const CartScene = memo(({}: CartSceneProps) => {
           mx={100}
         >
           {products.map((product, i) => (
-            <ShopProduct
+            <Product
               src={product.src}
               label={product.label}
               price={product.price}
               key={i}
+              heigth={250}
             />
           ))}
         </Stack>
