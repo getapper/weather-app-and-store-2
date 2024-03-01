@@ -1,4 +1,4 @@
-import weatherJson from "weather.json";
+import weatherJson from "weatherData.json";
 import sunny from "@/assets/sun.png";
 import rainy from "@/assets/rain.png";
 import overcast from "@/assets/overcast.png";
@@ -6,16 +6,21 @@ import storm from "@/assets/thunder.png";
 import cloudy from "@/assets/cloudy.png";
 import Image, { StaticImageData } from "next/image";
 
-export interface Weather {
-  daily: { len: number; time: []; maxTemp: []; minTemp: []; weatherCode: [] };
-  hourly: {
-    len: number;
-    time: [];
-    temperature: [];
-    precipitations: [];
-    weatherCode: [];
-  };
-}
+type WeatherElem = {
+  weatherCode: number[];
+  precipitazioni: number[];
+  temperature: number[];
+  minTemp: number;
+  maxTemp: number;
+};
+
+type WeatherData = {
+  lunedi: WeatherElem;
+  martedi: WeatherElem;
+  mercoledi: WeatherElem;
+  giovedi: WeatherElem;
+  venerdi: WeatherElem;
+};
 
 const getImage = (src: StaticImageData, alt: string, width?: number) => {
   return (
@@ -73,7 +78,7 @@ const getDataFromCode = (code: number, width?: number) => {
 };
 
 const useWeather = () => {
-  const weather: Weather = JSON.parse(JSON.stringify(weatherJson));
+  const weather: WeatherData = JSON.parse(JSON.stringify(weatherJson));
 
   return { weather, getDataFromCode };
 };
