@@ -18,8 +18,16 @@ import { FormAddress } from "../_form/FormAddress";
 type CheckoutDialogFormProps = {};
 
 export const CheckoutDialogForm = memo(({}: CheckoutDialogFormProps) => {
-  const { formData, submitDisabled, handleCheckout, isOpen, onClose, errors } =
-    useCheckoutDialogForm();
+  const {
+    formData,
+    submitDisabled,
+    handleCheckout,
+    isOpen,
+    onClose,
+    errors,
+    cartTotal,
+    cart,
+  } = useCheckoutDialogForm();
 
   return (
     <FormProvider {...formData}>
@@ -50,6 +58,16 @@ export const CheckoutDialogForm = memo(({}: CheckoutDialogFormProps) => {
               <FormDatePicker name="scadenza" label="Data di scadenza" />
               <FormTextField name="cvv" label="CVV" placeholder="CVV" />
             </Stack>
+            {cart.map((product, i) => {
+              return (
+                <Stack key={i}>
+                  <Typography>
+                    {product.label} - {product.price}$
+                  </Typography>
+                </Stack>
+              );
+            })}
+            <Typography>Totale: {cartTotal}$</Typography>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleCheckout} disabled={submitDisabled}>

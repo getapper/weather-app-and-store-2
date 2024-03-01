@@ -4,11 +4,12 @@ import ShopProduct from "@/components/ShopProduct";
 import { NavButton } from "@/components/NavButton";
 import { Button } from "@mui/material";
 import { CheckoutDialogForm } from "@/components/CheckoutDialogForm";
+import { OrderRecapDialog } from "@/components/OrderRecapDialog";
 
 type CartSceneProps = {};
 
 export const CartScene = memo(({}: CartSceneProps) => {
-  const { products, showDialog } = useCartScene();
+  const { products, showCheckoutDialog, showOrderRecapDialog } = useCartScene();
 
   return (
     <>
@@ -21,8 +22,12 @@ export const CartScene = memo(({}: CartSceneProps) => {
           key={product.id}
         />
       ))}
-      <Button onClick={showDialog}>Effettua il checkout</Button>
+      <Button onClick={showCheckoutDialog}>Effettua il checkout</Button>
+      <Button onClick={showOrderRecapDialog}>
+        Visualizza riepilogo ordine
+      </Button>
       <CheckoutDialogForm />
+      <OrderRecapDialog />
     </>
   );
 });

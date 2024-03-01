@@ -1,3 +1,4 @@
 export interface UiState {
-  isDialogOpen: boolean;
+  isCheckoutDialogOpen: boolean;
+  isOrderRecapDialogOpen: boolean;
 }

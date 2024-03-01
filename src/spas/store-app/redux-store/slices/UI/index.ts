@@ -5,15 +5,19 @@ import * as extraActions from "../../extra-actions";
 import * as sagas from "./UI.sagas";
 
 const initialState: UiState = {
-  isDialogOpen: false,
+  isCheckoutDialogOpen: false,
+  isOrderRecapDialogOpen: false,
 };
 
 export const UIStore = createSlice({
   name: "UI",
   initialState,
   reducers: {
-    setDialogIsOpen: (state, action) => {
-      state.isDialogOpen = action.payload;
+    setCheckoutDialogIsOpen: (state, action) => {
+      state.isCheckoutDialogOpen = action.payload;
+    },
+    setOrderRecapDialogIsOpen: (state, action) => {
+      state.isOrderRecapDialogOpen = action.payload;
     },
   },
 });

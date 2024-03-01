@@ -4,6 +4,7 @@ import * as feedback from "./feedback";
 import * as product from "./product";
 import * as cart from "./cart";
 import * as UI from "./UI";
+import * as orders from "./orders";
 
 export const reducers = {
   ajax: ajax.ajaxStore.reducer,
@@ -11,6 +12,7 @@ export const reducers = {
   product: product.productStore.reducer,
   cart: cart.cartStore.reducer,
   UI: UI.UIStore.reducer,
+  orders: orders.ordersStore.reducer,
 };
 
 export const actions = {
@@ -20,6 +22,7 @@ export const actions = {
   ...product.productStore.actions,
   ...cart.cartStore.actions,
   ...UI.UIStore.actions,
+  ...orders.ordersStore.actions,
 };
 
 export const selectors = {
@@ -28,6 +31,7 @@ export const selectors = {
   ...product.selectors,
   ...cart.selectors,
   ...UI.selectors,
+  ...orders.selectors,
 };
 
 export const sagas = [
@@ -36,4 +40,5 @@ export const sagas = [
   ...Object.values(product.sagas),
   ...Object.values(cart.sagas),
   ...Object.values(UI.sagas),
+  ...Object.values(orders.sagas),
 ];

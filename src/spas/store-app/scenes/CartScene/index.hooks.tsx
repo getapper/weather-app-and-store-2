@@ -5,8 +5,11 @@ import { useCallback } from "react";
 export const useCartScene = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectors.getCartItems);
-  const showDialog = useCallback(() => {
-    dispatch(actions.setDialogIsOpen(true));
+  const showCheckoutDialog = useCallback(() => {
+    dispatch(actions.setCheckoutDialogIsOpen(true));
   }, [dispatch]);
-  return { products, showDialog };
+  const showOrderRecapDialog = useCallback(() => {
+    dispatch(actions.setOrderRecapDialogIsOpen(true));
+  }, [dispatch]);
+  return { products, showCheckoutDialog, showOrderRecapDialog };
 };

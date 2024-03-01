@@ -4,13 +4,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { selectors, actions } from "@/spas/store-app/redux-store";
 import { useDispatch, useSelector } from "react-redux";
+import { IAddress } from "@/models/client/Address";
 
-type Address = {
-  via: string;
-  citta: string;
-  stato: string;
-  cap: string;
-};
 const addressSchema = yup.object({
   via: yup.string().required(),
   citta: yup.string().required(),
@@ -29,8 +24,8 @@ const schema = yup.object({
 });
 
 type CheckoutDialogFormData = {
-  spedizione: Address;
-  fatturazione: Address;
+  spedizione: IAddress;
+  fatturazione: IAddress;
   nome: string;
   cognome: string;
   numeroCarta: number;
@@ -38,16 +33,16 @@ type CheckoutDialogFormData = {
   cvv: number;
 };
 
-const defaultAddress = { via: "", citta: "", stato: "", cap: "" };
+const defaultAddress: IAddress = { via: "", citta: "", stato: "", cap: "" };
 
 export const useCheckoutDialogForm = () => {
   const dispatch = useDispatch();
 
   const cart = useSelector(selectors.getCartItems);
 
-  const isOpen = useSelector(selectors.getIsDialogOpen);
+  const isOpen = useSelector(selectors.getIsCheckoutDialogOpen);
   const onClose = useCallback(() => {
-    dispatch(actions.setDialogIsOpen(false));
+    dispatch(actions.setCheckoutDialogIsOpen(false));
   }, [dispatch]);
 
   const formData = useForm<CheckoutDialogFormData>({
@@ -67,14 +62,43 @@ export const useCheckoutDialogForm = () => {
     formState: { isValid, isSubmitted, errors },
   } = formData;
   const submitDisabled = isSubmitted && !isValid;
-  console.log(errors);
+
+  const cartTotal = useMemo(() => {
+    return cart.reduce((acc, product) => {
+      return (acc += product.price);
+    }, 0);
+  }, [cart]);
 
   const handleCheckout = useMemo(
     () =>
-      handleSubmit((data) => {
+      handleSubmit(async (data) => {
         console.log(data);
+        try {
+          const result = await fakeExternalServiceCheckout(data);
+          dispatch(actions.setCheckoutDialogIsOpen(false));
+
+          result === "OK"
+            ? window.alert(`Transazione avvenuta con successo`)
+            : window.alert(`Ops.. qualcosa è andato storto`);
+          const order = { ...data, total: cartTotal };
+          dispatch(actions.addOrder(order));
+          dispatch(actions.setCurrentOrder(order));
+
+          /* dispatch(
+            actions.setFeedback({
+              open: true,
+              type: result === "OK" ? "success" : "error",
+              message:
+                result === "OK"
+                  ? "Transazione avvenuta con successo"
+                  : `Ops.. qualcosa è andato storto`,
+            }),
+          ); */
+        } catch (e) {
+          console.log(e);
+        }
       }),
-    [handleSubmit],
+    [cartTotal, dispatch, handleSubmit],
   );
 
   return {
@@ -85,5 +109,14 @@ export const useCheckoutDialogForm = () => {
     cart,
     handleCheckout,
     errors,
+    cartTotal,
   };
 };
+
+async function fakeExternalServiceCheckout(data) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("OK");
+    }, 1000);
+  });
+}

@@ -13,26 +13,25 @@ export const FormAddress = memo(
   ({ label, name, helperText, errors }: FormAddressProps) => {
     const { value, handleChange, error } = useFormAddress(name);
 
-    console.log(errors);
     return (
       <>
         <Typography>{label}</Typography>
         <TextField
-          label="via"
+          label="Via"
           value={value?.via}
           onChange={(ev) => handleChange(ev, "via")}
           error={errors && !!errors.via}
           helperText={errors && !!errors.via ? "Dato invalido" : ""}
         />
         <TextField
-          label="città"
+          label="Città"
           value={value?.citta}
           onChange={(ev) => handleChange(ev, "citta")}
           error={errors && !!errors.citta}
           helperText={errors && !!errors.citta ? "Dato invalido" : ""}
         />
         <TextField
-          label="stato"
+          label="Stato"
           value={value?.stato}
           onChange={(ev) => handleChange(ev, "stato")}
           error={errors && !!errors.stato}
@@ -45,10 +44,6 @@ export const FormAddress = memo(
           error={errors && !!errors.cap}
           helperText={errors && !!errors.cap ? "Dato invalido" : ""}
         />
-        {/* <FormTextField placeholder="via" name="via" />
-      <FormTextField placeholder="città" name="citta" />
-      <FormTextField placeholder="stato" name="stato" />
-      <FormTextField placeholder="CAP" name="cap" /> */}
       </>
     );
   },
