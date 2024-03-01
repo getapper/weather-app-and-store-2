@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import { Button } from "@mui/material";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -55,12 +56,18 @@ export default function Home() {
           </div>
         </div>
         <>
-          <button onClick={() => (window.location.href = "/weather-app")}>
+          <Button
+            variant="contained"
+            onClick={() => (window.location.href = "/weather-app")}
+          >
             Wheater App
-          </button>
-          <button onClick={() => (window.location.href = "/weather-app")}>
-            Shop App
-          </button>
+          </Button>
+          <Button
+            variant="contained"
+            onClick={() => (window.location.href = "/store-app")}
+          >
+            Store App
+          </Button>
         </>
       </main>
     </>
