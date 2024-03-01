@@ -4,6 +4,7 @@ import Image, { StaticImageData } from "next/image";
 import { Button, Stack, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { RemoveShoppingCartRounded } from "@mui/icons-material";
 
 //TODO: pass as prop an obj for product instead of single props
 type ProductProps = {
@@ -18,6 +19,7 @@ type ProductProps = {
   heigth?: number;
   width?: number;
   handleAddToCart?: () => void;
+  handleDeleteFromCart?: () => void;
 };
 
 const imageStyle: CSSProperties = {
@@ -36,6 +38,7 @@ const Product: React.FC<ProductProps> = ({
   heigth,
   width,
   handleAddToCart,
+  handleDeleteFromCart,
 }) => {
   const {} = useProduct();
 
@@ -113,6 +116,20 @@ const Product: React.FC<ProductProps> = ({
               onClick={goToProductInfo}
             >
               <InfoIcon /> {/* TODO: change color with theme */}
+            </Button>
+          )}
+          {handleDeleteFromCart && (
+            <Button
+              variant="text"
+              sx={{
+                position: "absolute",
+                bottom: 40,
+                right: 0,
+              }}
+              onClick={handleDeleteFromCart}
+            >
+              <RemoveShoppingCartRounded />{" "}
+              {/* TODO: change color with theme */}
             </Button>
           )}
         </Stack>

@@ -9,6 +9,7 @@ export type IProduct = {
   sku: string;
   disponibile: boolean;
   description: string;
+  quantity?: number;
 };
 
 export class Product implements IProduct {
@@ -20,4 +21,5 @@ export class Product implements IProduct {
   sku: string;
   disponibile: boolean;
   description: string;
+  quantity?: number;
 }

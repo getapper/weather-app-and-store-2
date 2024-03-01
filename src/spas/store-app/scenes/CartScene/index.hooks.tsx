@@ -15,5 +15,18 @@ export const useCartScene = () => {
     dispatch(actions.setOrderRecapDialogIsOpen(true));
   }, [dispatch]);
 
-  return { products, showCheckoutDialog, showOrderRecapDialog, lastOrder };
+  const handleDeleteFromCart = useCallback(
+    (index) => {
+      dispatch(actions.removeItemFromCart(index));
+    },
+    [dispatch],
+  );
+
+  return {
+    products,
+    showCheckoutDialog,
+    showOrderRecapDialog,
+    lastOrder,
+    handleDeleteFromCart,
+  };
 };

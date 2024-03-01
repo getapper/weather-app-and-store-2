@@ -8,8 +8,14 @@ import Product from "../Product";
 type HeaderProps = {};
 
 export const Header = memo(({}: HeaderProps) => {
-  const { isOpen, toggleDrawer, cart: products, total } = useHeader();
-  console.log(products);
+  const {
+    isOpen,
+    toggleDrawer,
+    cart: products,
+    total,
+    handleDeleteFromCart,
+  } = useHeader();
+
   return (
     <Stack
       direction="row"
@@ -50,6 +56,7 @@ export const Header = memo(({}: HeaderProps) => {
                 price={product.price}
                 key={i}
                 heigth={250}
+                handleDeleteFromCart={() => handleDeleteFromCart(i)}
               />
             ))}
             <Typography variant="h4" sx={{ my: 2, mx: 4 }}>

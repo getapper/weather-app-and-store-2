@@ -11,8 +11,13 @@ import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 type CartSceneProps = {};
 
 export const CartScene = memo(({}: CartSceneProps) => {
-  const { products, showCheckoutDialog, showOrderRecapDialog, lastOrder } =
-    useCartScene();
+  const {
+    products,
+    showCheckoutDialog,
+    showOrderRecapDialog,
+    lastOrder,
+    handleDeleteFromCart,
+  } = useCartScene();
 
   return (
     <>
@@ -33,6 +38,7 @@ export const CartScene = memo(({}: CartSceneProps) => {
               price={product.price}
               key={i}
               heigth={250}
+              handleDeleteFromCart={() => handleDeleteFromCart(i)}
             />
           ))}
         </Stack>
