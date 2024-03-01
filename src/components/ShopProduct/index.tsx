@@ -1,8 +1,7 @@
 import React, { memo } from "react";
 import { useShopProduct } from "./index.hooks";
 import Image, { StaticImageData } from "next/image";
-import { Button, Paper, Stack, Typography } from "@mui/material";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { Stack, Typography } from "@mui/material";
 
 type ShopProductProps = {
   src: StaticImageData;
@@ -13,7 +12,6 @@ type ShopProductProps = {
   sku?: string;
   description?: string;
   disponibile?: boolean;
-  handleAddToCart?: () => void;
   heigth?: number;
   width?: number;
 };
@@ -26,12 +24,11 @@ const ShopProduct: React.FC<ShopProductProps> = ({
   onClick,
   sku,
   description,
-  handleAddToCart,
   disponibile,
   heigth,
   width,
 }) => {
-  const { navigate } = useShopProduct();
+  const {} = useShopProduct();
 
   return (
     <>
@@ -61,7 +58,7 @@ const ShopProduct: React.FC<ShopProductProps> = ({
         </Stack>
 
         {sku && description && (
-          <Stack spacing={3}>
+          <Stack spacing={3} px={30} mt={5}>
             <Typography>{sku}</Typography>
             <Typography>{description}</Typography>
             {disponibile !== undefined && (
@@ -70,18 +67,6 @@ const ShopProduct: React.FC<ShopProductProps> = ({
               </Typography>
             )}
           </Stack>
-        )}
-
-        {sku && description && (
-          <Button
-            variant="contained"
-            onClick={handleAddToCart}
-            disabled={!disponibile}
-            sx={{ fontWeight: 600, fontSize: 20, width: 400, mt: 5 }}
-          >
-            <AddShoppingCartIcon sx={{ mr: 3 }} />
-            Aggiungi al carrello
-          </Button>
         )}
       </Stack>
     </>

@@ -3,6 +3,8 @@ import { useProductDetailsScene } from "./index.hooks";
 import ShopProduct from "@/components/ShopProduct";
 import { NavButton } from "@/components/NavButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Button, Stack } from "@mui/material";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 type ProductDetailsSceneProps = {};
 
@@ -11,7 +13,15 @@ export const ProductDetailsScene = memo(({}: ProductDetailsSceneProps) => {
 
   return (
     <>
-      <NavButton />
+      <Stack direction="row" justifyContent={"space-between"} display={"flex"}>
+        <NavButton />
+        <NavButton
+          variant="contained"
+          path="/cart"
+          label="Vai al carrello"
+          icon={<ShoppingCartIcon />}
+        />
+      </Stack>
       <ShopProduct
         src={product?.src}
         label={product?.label}
@@ -19,16 +29,20 @@ export const ProductDetailsScene = memo(({}: ProductDetailsSceneProps) => {
         sku={product?.sku}
         description={product?.description}
         disponibile={product.disponibile}
-        handleAddToCart={handleAddToCart}
-        heigth={500}
+        heigth={400}
         width={300}
       />
-      <NavButton
-        variant="contained"
-        path="/cart"
-        label="Vai al carrello"
-        icon={<ShoppingCartIcon />}
-      />
+      <Stack justifyContent={"center"} alignItems={"center"} mb={10}>
+        <Button
+          variant="contained"
+          onClick={handleAddToCart}
+          disabled={!product?.disponibile}
+          sx={{ fontWeight: 600, fontSize: 20, width: 400, mt: 5 }}
+        >
+          <AddShoppingCartIcon sx={{ mr: 3 }} />
+          Aggiungi al carrello
+        </Button>
+      </Stack>
     </>
   );
 });

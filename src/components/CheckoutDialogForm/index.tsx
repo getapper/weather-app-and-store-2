@@ -32,10 +32,10 @@ export const CheckoutDialogForm = memo(({}: CheckoutDialogFormProps) => {
   return (
     <FormProvider {...formData}>
       <form onSubmit={handleCheckout}>
-        <Dialog open={isOpen} onClose={onClose}>
-          <DialogTitle>Effettua il checkout</DialogTitle>
-          <DialogContent>
-            <Stack spacing={2} py={2} px={4}>
+        <Dialog open={isOpen} onClose={onClose} fullWidth>
+          <DialogTitle variant="h3">Effettua il checkout</DialogTitle>
+          <DialogContent sx={{ p: 5 }}>
+            <Stack spacing={2}>
               <FormAddress
                 name="spedizione"
                 label="Indirizzo di spedizione"
@@ -58,19 +58,34 @@ export const CheckoutDialogForm = memo(({}: CheckoutDialogFormProps) => {
               <FormDatePicker name="scadenza" label="Data di scadenza" />
               <FormTextField name="cvv" label="CVV" placeholder="CVV" />
             </Stack>
-            {cart.map((product, i) => {
-              return (
-                <Stack key={i}>
-                  <Typography>
-                    {product.label} - {product.price}$
-                  </Typography>
-                </Stack>
-              );
-            })}
-            <Typography>Totale: {cartTotal}$</Typography>
+            <Stack spacing={2} mt={3}>
+              <Divider />
+              <Typography>Recap ordine:</Typography>
+              <ul>
+                {cart.map((product, i) => {
+                  return (
+                    <li key={i} style={{ marginLeft: 40 }}>
+                      <Typography>
+                        {product.label} - {product.price}$
+                      </Typography>
+                    </li>
+                  );
+                })}
+              </ul>
+              <Divider />
+              <Stack direction={"row"} spacing={2}>
+                <Typography fontWeight={600}>{"Totale:"}</Typography>
+                <Typography>{cartTotal} $</Typography>
+              </Stack>
+            </Stack>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleCheckout} disabled={submitDisabled}>
+            <Button
+              sx={{ mr: 2 }}
+              onClick={handleCheckout}
+              disabled={submitDisabled}
+              variant="contained"
+            >
               CHECKOUT
             </Button>
           </DialogActions>

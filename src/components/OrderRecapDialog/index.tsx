@@ -18,8 +18,11 @@ export const OrderRecapDialog = memo(({}: OrderRecapDialogProps) => {
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <DialogTitle>Dettagli ordine</DialogTitle>
+      <DialogTitle>
+        <Typography variant="h3">Dettagli ordine</Typography>
+      </DialogTitle>
       <DialogContent>
+        <Divider sx={{ mb: 3 }} />
         {order ? (
           <>
             <Typography fontWeight={700}>Ordine fatto da</Typography>
@@ -28,26 +31,26 @@ export const OrderRecapDialog = memo(({}: OrderRecapDialogProps) => {
               {order.cognome.charAt(0).toUpperCase() + order.cognome.slice(1)}
             </Typography>
             <Divider sx={{ my: 2 }} />
-            <Typography>Indirizzo consegna:</Typography>
+            <Typography fontWeight={700}>Indirizzo consegna:</Typography>
             <Typography>
               {"via " +
                 order.spedizione.via +
-                " " +
+                ", " +
                 order.spedizione.citta +
-                " " +
+                " (" +
                 order.spedizione.cap +
-                " " +
+                "), " +
                 order.spedizione.stato}
             </Typography>
-            <Typography>Indirizzo fatturazione:</Typography>
+            <Typography fontWeight={700}>Indirizzo fatturazione:</Typography>
             <Typography>
               {"via " +
                 order.fatturazione.via +
-                " " +
+                ", " +
                 order.fatturazione.citta +
-                " " +
+                " (" +
                 order.fatturazione.cap +
-                " " +
+                "), " +
                 order.fatturazione.stato}
             </Typography>
             <Divider sx={{ my: 2 }} />
@@ -59,13 +62,18 @@ export const OrderRecapDialog = memo(({}: OrderRecapDialogProps) => {
             </Typography>
             <Divider sx={{ my: 2 }} />
 
+            <Typography fontWeight={700}>Recap prodotti: </Typography>
             {order.cart.map((product, i) => {
               return (
-                <Stack key={i}>{product.label + " - " + product.price}</Stack>
+                <Stack key={i}>
+                  {product.label + " - " + product.price + "$"}
+                </Stack>
               );
             })}
-            <Divider />
-            <Typography>{order.total}</Typography>
+            <Stack direction="row" spacing={2}>
+              <Typography fontWeight={700}>Totale:</Typography>
+              <Typography>{" " + order.total + " $"}</Typography>
+            </Stack>
           </>
         ) : (
           "nessun ordine effettuato"

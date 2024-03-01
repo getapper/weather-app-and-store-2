@@ -73,8 +73,9 @@ export const useCheckoutDialogForm = () => {
     () =>
       handleSubmit(async (data) => {
         try {
-          const result = await fakeExternalServiceCheckout(data);
           dispatch(actions.setCheckoutDialogIsOpen(false));
+
+          const result = await fakeExternalServiceCheckout(data);
 
           result === "OK"
             ? window.alert(`Transazione avvenuta con successo`)
@@ -82,17 +83,6 @@ export const useCheckoutDialogForm = () => {
           const order = { ...data, total: cartTotal, cart };
           dispatch(actions.addOrder(order));
           dispatch(actions.setCurrentOrder(order));
-
-          /* dispatch(
-            actions.setFeedback({
-              open: true,
-              type: result === "OK" ? "success" : "error",
-              message:
-                result === "OK"
-                  ? "Transazione avvenuta con successo"
-                  : `Ops.. qualcosa è andato storto`,
-            }),
-          ); */
         } catch (e) {
           console.log(e);
         }

@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { useFormAddress } from "./index.hooks";
 import { FormTextField } from "../FormTextField";
-import { TextField, TextFieldProps, Typography } from "@mui/material";
+import { Stack, TextField, TextFieldProps, Typography } from "@mui/material";
 
 type FormAddressProps = {
   label: string;
@@ -14,22 +14,26 @@ export const FormAddress = memo(
     const { value, handleChange, error } = useFormAddress(name);
 
     return (
-      <>
+      <Stack spacing={1}>
         <Typography>{label}</Typography>
-        <TextField
-          label="Via"
-          value={value?.via}
-          onChange={(ev) => handleChange(ev, "via")}
-          error={errors && !!errors.via}
-          helperText={errors && !!errors.via ? "Dato invalido" : ""}
-        />
-        <TextField
-          label="Città"
-          value={value?.citta}
-          onChange={(ev) => handleChange(ev, "citta")}
-          error={errors && !!errors.citta}
-          helperText={errors && !!errors.citta ? "Dato invalido" : ""}
-        />
+        <Stack direction="row" spacing={1}>
+          <TextField
+            sx={{ width: "50%" }}
+            label="Via"
+            value={value?.via}
+            onChange={(ev) => handleChange(ev, "via")}
+            error={errors && !!errors.via}
+            helperText={errors && !!errors.via ? "Dato invalido" : ""}
+          />
+          <TextField
+            sx={{ width: "50%" }}
+            label="Città"
+            value={value?.citta}
+            onChange={(ev) => handleChange(ev, "citta")}
+            error={errors && !!errors.citta}
+            helperText={errors && !!errors.citta ? "Dato invalido" : ""}
+          />
+        </Stack>
         <TextField
           label="Stato"
           value={value?.stato}
@@ -44,7 +48,7 @@ export const FormAddress = memo(
           error={errors && !!errors.cap}
           helperText={errors && !!errors.cap ? "Dato invalido" : ""}
         />
-      </>
+      </Stack>
     );
   },
 );
