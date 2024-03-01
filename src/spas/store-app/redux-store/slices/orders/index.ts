@@ -15,7 +15,6 @@ export const ordersStore = createSlice({
   initialState,
   reducers: {
     addOrder: (state, action: PayloadAction<IOrder>) => {
-      console.log(action.payload);
       state.list = state.list.length
         ? [...state.list, action.payload]
         : [action.payload];

@@ -1,4 +1,5 @@
 import { IAddress } from "../Address";
+import { IProduct } from "../Product";
 
 export type IOrder = {
   spedizione: IAddress;
@@ -8,6 +9,7 @@ export type IOrder = {
   numeroCarta: number;
   scadenza: Date;
   cvv: number;
+  cart: IProduct[];
   total: number;
 };
 
@@ -20,4 +22,5 @@ export class Order implements IOrder {
   scadenza: Date;
   cvv: number;
   total: number;
+  cart: IProduct[];
 }

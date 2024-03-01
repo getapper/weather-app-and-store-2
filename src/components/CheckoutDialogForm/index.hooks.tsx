@@ -72,7 +72,6 @@ export const useCheckoutDialogForm = () => {
   const handleCheckout = useMemo(
     () =>
       handleSubmit(async (data) => {
-        console.log(data);
         try {
           const result = await fakeExternalServiceCheckout(data);
           dispatch(actions.setCheckoutDialogIsOpen(false));
@@ -80,7 +79,7 @@ export const useCheckoutDialogForm = () => {
           result === "OK"
             ? window.alert(`Transazione avvenuta con successo`)
             : window.alert(`Ops.. qualcosa è andato storto`);
-          const order = { ...data, total: cartTotal };
+          const order = { ...data, total: cartTotal, cart };
           dispatch(actions.addOrder(order));
           dispatch(actions.setCurrentOrder(order));
 
@@ -98,7 +97,7 @@ export const useCheckoutDialogForm = () => {
           console.log(e);
         }
       }),
-    [cartTotal, dispatch, handleSubmit],
+    [cartTotal, dispatch, handleSubmit, cart],
   );
 
   return {
