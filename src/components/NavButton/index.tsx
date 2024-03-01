@@ -24,7 +24,7 @@ export const NavButton = memo(
           onClick={() => navigate(path)}
           sx={{
             alignItems: "center",
-            justifyContent: "flex-start",
+            justifyContent: label !== "" ? "flex-start" : "center",
             display: "flex",
             py: 2,
           }}
