@@ -12,9 +12,9 @@
     "tsc-backend": "rimraf dist && npx ttsc --p tsconfig-backend.json"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.15.11",
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.11.7",
     "@reduxjs/toolkit": "1.4.0",
     "@types/node": "20.11.23",
     "@types/react": "18.2.61",
@@ -29,7 +29,13 @@
     "redux-persist": "6.0.0",
     "redux-saga": "1.1.3",
     "typescript": "4.9.5",
-    "yup": "0.32.9"
+    "yup": "0.32.9",
+    "@hookform/resolvers": "2.8.8",
+    "@mui/icons-material": "5.11.0",
+    "@mui/x-date-pickers": "5.0.17",
+    "moment": "2.29.4",
+    "react-dropzone": "12.0.5",
+    "react-hook-form": "7.29.0"
   },
   "engines": {
     "node": ">=16.0.0 <17.0.0"

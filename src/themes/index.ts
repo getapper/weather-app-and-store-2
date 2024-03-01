@@ -4,10 +4,10 @@ export default responsiveFontSizes(
   createTheme({
     palette: {
       primary: {
-        main: "#5378B2",
+        main: "#71B9DA",
       },
       secondary: {
-        main: "#8B8A9D",
+        main: "#6291A8",
       },
     },
   }),
