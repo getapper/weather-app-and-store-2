@@ -68,5 +68,5 @@ export const useStoreHomeScene = () => {
     [navigate, dispatch, products],
   );
 
-  return { products, openProductDetails, navigate };
+  return { products, openProductDetails };
 };

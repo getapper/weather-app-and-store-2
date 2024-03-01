@@ -1,34 +1,32 @@
 import React, { memo } from "react";
 import { useStoreHomeScene } from "./index.hooks";
 import ShopProduct from "@/components/ShopProduct";
-import { Button, Grid, Typography } from "@mui/material";
+import { Divider, Grid, Typography } from "@mui/material";
 import { NavButton } from "@/components/NavButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 type StoreHomeSceneProps = {};
 
 export const StoreHomeScene = memo(({}: StoreHomeSceneProps) => {
-  const { products, openProductDetails, navigate } = useStoreHomeScene();
+  const { products, openProductDetails } = useStoreHomeScene();
 
   return (
     <>
-      <Grid container>
-        <Grid item>
-          <Typography>Shop</Typography>
-        </Grid>
-
+      <Grid container px={10} mt={10}>
         <Grid container item>
           {products.map((elem, i) => (
-            <ShopProduct
-              src={elem.src}
-              label={elem.label}
-              price={elem.price}
-              key={elem.id}
-              alt={elem.label}
-              onClick={() => openProductDetails(elem.id.toString())}
-            />
+            <Grid item key={i} md={6} xs={12} lg={3}>
+              <ShopProduct
+                src={elem.src}
+                label={elem.label}
+                price={elem.price}
+                key={elem.id}
+                alt={elem.label}
+                onClick={() => openProductDetails(elem.id.toString())}
+              />
+            </Grid>
           ))}
         </Grid>
-        <NavButton path="/cart" label="Vai al carrello" />
       </Grid>
     </>
   );

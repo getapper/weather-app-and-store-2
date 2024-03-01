@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { useShopProduct } from "./index.hooks";
 import Image, { StaticImageData } from "next/image";
-import { Button, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 
 type ShopProductProps = {
   src: StaticImageData;
@@ -11,7 +11,9 @@ type ShopProductProps = {
   onClick?: () => void;
   sku?: string;
   description?: string;
-  handleAddToCart?: () => void;
+  disponibile?: boolean;
+  heigth?: number;
+  width?: number;
 };
 
 const ShopProduct: React.FC<ShopProductProps> = ({
@@ -22,23 +24,49 @@ const ShopProduct: React.FC<ShopProductProps> = ({
   onClick,
   sku,
   description,
-  handleAddToCart,
+  disponibile,
+  heigth,
+  width,
 }) => {
-  const { navigate } = useShopProduct();
+  const {} = useShopProduct();
 
   return (
     <>
-      <Stack direction="column" spacing={1} onClick={onClick}>
-        <Image src={src} width={100} height={300} alt={alt} />
-        <Typography>{label}</Typography>
-        <Typography>{price}$</Typography>
+      <Stack direction="column">
+        <Stack
+          boxShadow={2}
+          direction="column"
+          onClick={onClick}
+          sx={{
+            ":hover": {
+              cursor: "pointer",
+            },
+            justifyContent: "center",
+            alignItems: "center",
+            py: 5,
+          }}
+          spacing={2}
+        >
+          <Image
+            src={src}
+            width={width ?? 200}
+            height={heigth ?? 300}
+            alt={alt}
+          />
+          <Typography fontWeight={600}>{label}</Typography>
+          <Typography>{price}$</Typography>
+        </Stack>
+
         {sku && description && (
-          <>
+          <Stack spacing={3} px={30} mt={5}>
             <Typography>{sku}</Typography>
             <Typography>{description}</Typography>
-
-            <Button onClick={handleAddToCart}>Aggiungi al carrello</Button>
-          </>
+            {disponibile !== undefined && (
+              <Typography sx={{ color: disponibile ? "green" : "red" }}>
+                {disponibile ? "Disponibile" : "Non diponibile"}
+              </Typography>
+            )}
+          </Stack>
         )}
       </Stack>
     </>
