@@ -46,6 +46,10 @@ export const WheaterAppHomeScene = memo(({}: WheaterAppHomeSceneProps) => {
         borderRadius="10px"
       >
         <Stack direction="column" width={"100%"} spacing={1}>
+          <Typography>
+            {Object.keys(weather)[selected - 1].charAt(0).toUpperCase() +
+              Object.keys(weather)[selected - 1].slice(1)}
+          </Typography>
           {hourlyWeather.filter(
             (el, index) =>
               index >= 24 * (selected - 1) && index < 24 * selected,
