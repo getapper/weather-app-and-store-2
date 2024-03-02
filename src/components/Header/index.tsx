@@ -27,7 +27,9 @@ export const Header = memo(({}: HeaderProps) => {
         position: "sticky",
       }}
     >
-      <Typography variant="h1">my shop</Typography>
+      <Typography variant="h1" ml={4}>
+        my shop
+      </Typography>
       <Stack spacing={2} p={2}>
         <NavButton label="" />
         <Button
@@ -43,19 +45,21 @@ export const Header = memo(({}: HeaderProps) => {
           onClose={() => toggleDrawer(false)}
           sx={{ boxShadow: 2, mx: 20, position: "relative" }}
         >
-          <Stack spacing={1} sx={{ mx: 10, my: 1 }}>
-            <NavButton
-              path="/cart"
-              label="Vai al carrello"
-              icon={<ShoppingCartIcon />}
-            />
+          <Stack sx={{ mx: 10, my: 1 }}>
+            <Button onClick={() => toggleDrawer(false)}>
+              <NavButton
+                path="/cart"
+                label="Vai al carrello"
+                icon={<ShoppingCartIcon />}
+              />
+            </Button>
             {products?.map((product, i) => (
               <Product
                 src={product.src}
                 label={product.label}
                 price={product.price}
                 key={i}
-                heigth={250}
+                heigth={300}
                 handleDeleteFromCart={() => handleDeleteFromCart(i)}
               />
             ))}

@@ -2,7 +2,15 @@ import React, { memo } from "react";
 import { useCartScene } from "./index.hooks";
 import Product from "@/components/Product";
 import { NavButton } from "@/components/NavButton";
-import { Button, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  ListSubheader,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { CheckoutDialogForm } from "@/components/CheckoutDialogForm";
 import { OrderRecapDialog } from "@/components/OrderRecapDialog";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
@@ -21,13 +29,23 @@ export const CartScene = memo(({}: CartSceneProps) => {
 
   return (
     <>
-      <Stack spacing={5} alignItems="center" mt={5}>
+      <Stack
+        spacing={5}
+        alignItems="center"
+        justifyContent="center"
+        mt={5}
+        direction="row-reverse"
+      >
         <Stack
           direction="column"
-          sx={{ overflowY: "scroll" }}
+          alignItems="center"
+          justifyContent="center"
+          sx={{
+            overflowY: products.length === 1 ? "hidden" : "scroll",
+            scrollbarWidth: "none",
+            px: 20,
+          }}
           height={500}
-          width={800}
-          boxShadow={2}
           spacing={2}
           mx={100}
         >
@@ -42,32 +60,58 @@ export const CartScene = memo(({}: CartSceneProps) => {
             />
           ))}
         </Stack>
-      </Stack>
-      <Stack
-        spacing={2}
-        direction="row"
-        justifyContent="space-between"
-        mt={5}
-        px={15}
-      >
-        <Button
-          variant="contained"
-          onClick={showCheckoutDialog}
-          sx={{ textTransform: "none", p: 5, fontSize: 15 }}
-          disabled={!products.length}
+        <Stack
+          spacing={2}
+          direction="column"
+          justifyContent="space-between"
+          mt={5}
+          px={15}
         >
-          <ShoppingCartCheckoutIcon sx={{ mr: 2 }} /> Effettua il checkout
-        </Button>
-        <Button
-          variant="contained"
-          onClick={showOrderRecapDialog}
-          disabled={!lastOrder}
-          sx={{ textTransform: "none", p: 5, fontSize: 15 }}
-        >
-          <ReceiptLongIcon sx={{ mr: 2 }} />
-          Visualizza riepilogo utlimo ordine
-        </Button>
+          <Button
+            variant="contained"
+            onClick={showCheckoutDialog}
+            sx={{ textTransform: "none", p: 5, fontSize: 15 }}
+            disabled={!products.length}
+          >
+            <ShoppingCartCheckoutIcon sx={{ mr: 2 }} /> Effettua il checkout
+          </Button>
+          <Button
+            variant="contained"
+            onClick={showOrderRecapDialog}
+            disabled={!lastOrder}
+            sx={{ textTransform: "none", p: 5, fontSize: 15 }}
+          >
+            <ReceiptLongIcon sx={{ mr: 2 }} />
+            Visualizza riepilogo utlimo ordine
+          </Button>
+          <List
+            subheader={
+              <ListSubheader sx={{ fontSize: 20 }}>Prodotti</ListSubheader>
+            }
+          >
+            {products.map((product, i) => (
+              <ListItem
+                key={i}
+                sx={{
+                  alignItems: "center",
+                  justifyContent: "space-evenly",
+                  display: "flex",
+                }}
+              >
+                <ListItemText>{product.sku}</ListItemText>
+                <ListItemText>{"  " + product.label}</ListItemText>
+                <ListItemText>{product.price + " $"}</ListItemText>
+              </ListItem>
+            ))}
+          </List>
+          <Typography>
+            {"Totale: " +
+              products.reduce((acc, e) => (acc += e.price), 0) +
+              " $"}
+          </Typography>
+        </Stack>
       </Stack>
+
       <CheckoutDialogForm />
       <OrderRecapDialog />
     </>
