@@ -98,22 +98,19 @@ export const CartScene = memo(({}: CartSceneProps) => {
           </Grid>
         </Grid>
 
-        <Grid
-          item
-          container
-          sx={{
-            overflowY: products.length === 1 ? "hidden" : "scroll",
-            scrollbarWidth: "none",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            maxHeight: 650,
-          }}
-          md={12}
-          lg={6}
-        >
-          <Grid item sx={{ pt: 150 }}>
+        <Grid item container md={12} lg={6}>
+          <Grid
+            item
+            sx={{
+              overflowY: products.length === 1 ? "hidden" : "scroll",
+              scrollbarWidth: "none",
+              /* display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center", */
+              maxHeight: 650,
+            }}
+          >
             {products.map((product, i) => (
               <Product
                 src={product.src}
