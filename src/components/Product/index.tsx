@@ -1,7 +1,7 @@
 import React, { CSSProperties, memo } from "react";
 import { useProduct } from "./index.hooks";
 import Image, { StaticImageData } from "next/image";
-import { Button, Stack, StackProps, Typography } from "@mui/material";
+import { Button, Stack, StackProps, Tooltip, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { RemoveShoppingCartRounded } from "@mui/icons-material";
@@ -26,6 +26,9 @@ type ProductProps = {
 const imageStyle: CSSProperties = {
   borderRadius: 15,
   boxShadow: "40 rgba(0, 0, 0, 0.1)",
+  justifyContent: "center",
+  alignItems: "center",
+  display: "flex",
 };
 
 const Product: React.FC<ProductProps> = ({
@@ -46,12 +49,13 @@ const Product: React.FC<ProductProps> = ({
   const { showCheckoutDialog } = useProduct();
 
   return (
-    <Stack direction="row">
+    <Stack>
       <Stack
         direction="column"
         sx={{
           justifyContent: "center",
           alignItems: "center",
+          display: "flex",
           py: 5,
           position: "relative",
         }}
@@ -72,7 +76,7 @@ const Product: React.FC<ProductProps> = ({
               color: "black",
               px: 3,
               py: 1,
-              bottom: 20,
+              bottom: 65,
               borderRadius: 10,
               fontWeight: 600,
             }}
@@ -96,47 +100,57 @@ const Product: React.FC<ProductProps> = ({
             {label}
           </Typography>
         )}
-        {goToProductInfo && (
-          <Button
-            sx={{
-              position: "absolute",
-              bottom: 40,
-              right: 40,
-              borderRadius: 100,
-            }}
-            onClick={handleAddToCart}
-          >
-            <AddShoppingCartIcon />
-            {/* TODO: change color with theme */}
-          </Button>
-        )}
-        {handleAddToCart && (
-          <Button
-            className="handleAddToCartBtn"
-            variant="text"
-            sx={{
-              position: "absolute",
-              bottom: 40,
-              left: 40,
-            }}
-            onClick={goToProductInfo}
-          >
-            <InfoIcon /> {/* TODO: change color with theme */}
-          </Button>
-        )}
-        {handleDeleteFromCart && (
-          <Button
-            variant="text"
-            sx={{
-              position: "absolute",
-              bottom: 40,
-              right: 0,
-            }}
-            onClick={handleDeleteFromCart}
-          >
-            <RemoveShoppingCartRounded /> {/* TODO: change color with theme */}
-          </Button>
-        )}
+
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          width={width ?? 300}
+        >
+          {goToProductInfo && (
+            <Tooltip title={"Aggiungi al carrello"}>
+              <Button
+                className="handleAddToCartBtn"
+                sx={{
+                  bottom: 50,
+                  borderRadius: 100,
+                }}
+                onClick={handleAddToCart}
+              >
+                <AddShoppingCartIcon />
+                {/* TODO: change color with theme */}
+              </Button>
+            </Tooltip>
+          )}
+          {handleAddToCart && (
+            <Tooltip title="Mostra informazioni prodotto">
+              <Button
+                className="handleAddToCartBtn"
+                variant="text"
+                sx={{
+                  bottom: 50,
+                }}
+                onClick={goToProductInfo}
+              >
+                <InfoIcon /> {/* TODO: change color with theme */}
+              </Button>
+            </Tooltip>
+          )}
+          {handleDeleteFromCart && (
+            <Tooltip title="Rimuovi dal carrello">
+              <Button
+                variant="text"
+                sx={{
+                  bottom: 50,
+                  right: 0,
+                }}
+                onClick={handleDeleteFromCart}
+              >
+                <RemoveShoppingCartRounded />{" "}
+                {/* TODO: change color with theme */}
+              </Button>
+            </Tooltip>
+          )}
+        </Stack>
       </Stack>
 
       {sku && description && (
@@ -154,12 +168,7 @@ const Product: React.FC<ProductProps> = ({
             variant="contained"
             onClick={handleAddToCart}
             disabled={!disponibile}
-            /* sx={{
-              fontWeight: 600,
-              fontSize: 20,
-              width: 400,
-              mt: 5,
-            }} */ sx={{ textTransform: "none", p: 5, fontSize: 15 }}
+            sx={{ textTransform: "none", p: 5, fontSize: 15 }}
           >
             <AddShoppingCartIcon sx={{ mr: 3 }} />
             Aggiungi al carrello

@@ -14,6 +14,7 @@ import {
 import { FormTextField } from "../_form/FormTextField";
 import { FormDatePicker } from "../_form/FormDatePicker";
 import { FormAddress } from "../_form/FormAddress";
+import CloseIcon from "@mui/icons-material/Close";
 
 type CheckoutDialogFormProps = {};
 
@@ -33,8 +34,22 @@ export const CheckoutDialogForm = memo(({}: CheckoutDialogFormProps) => {
     <FormProvider {...formData}>
       <form onSubmit={handleCheckout}>
         <Dialog open={isOpen} onClose={onClose} fullWidth>
-          <DialogTitle variant="h3">Effettua il checkout</DialogTitle>
-          <DialogContent sx={{ p: 5 }}>
+          <DialogTitle
+            sx={{
+              bgcolor: "lightblue",
+              color: "white",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Typography variant="h3">Effettua il checkout</Typography>
+            <Button onClick={onClose}>
+              <CloseIcon color="primary" />
+            </Button>
+          </DialogTitle>
+
+          <DialogContent sx={{ p: 5, mt: 3, pb: 0 }}>
             <Stack spacing={2}>
               <FormAddress
                 name="spedizione"
@@ -80,8 +95,9 @@ export const CheckoutDialogForm = memo(({}: CheckoutDialogFormProps) => {
             </Stack>
           </DialogContent>
           <DialogActions>
+            {/* TODO: change with theme */}
             <Button
-              sx={{ mr: 2 }}
+              sx={{ m: 2 }}
               onClick={handleCheckout}
               disabled={submitDisabled}
               variant="contained"

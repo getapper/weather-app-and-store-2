@@ -4,6 +4,7 @@ import Product from "@/components/Product";
 import { NavButton } from "@/components/NavButton";
 import {
   Button,
+  Grid,
   List,
   ListItem,
   ListItemText,
@@ -29,88 +30,103 @@ export const CartScene = memo(({}: CartSceneProps) => {
 
   return (
     <>
-      <Stack
-        spacing={5}
-        alignItems="center"
-        justifyContent="center"
-        mt={5}
-        direction="row-reverse"
-      >
-        <Stack
+      <Grid container alignItems="center" justifyContent="center" mt={5}>
+        <Grid
+          item
+          container
           direction="column"
-          alignItems="center"
           justifyContent="center"
+          alignItems="center"
+          display="flex"
+          md={12}
+          lg={6}
+          sx={{ px: 10, pl: 10 }}
+        >
+          <Grid
+            item
+            sx={{ display: "flex", flexDirection: "column", width: "100%" }}
+          >
+            <Button
+              variant="contained"
+              onClick={showCheckoutDialog}
+              sx={{ textTransform: "none", p: 5, fontSize: 15, mb: 1 }}
+              disabled={!products.length}
+            >
+              <ShoppingCartCheckoutIcon sx={{ mr: 2 }} /> Effettua il checkout
+            </Button>
+            <Button
+              variant="contained"
+              onClick={showOrderRecapDialog}
+              disabled={!lastOrder}
+              sx={{ textTransform: "none", p: 5, fontSize: 15 }}
+            >
+              <ReceiptLongIcon sx={{ mr: 2 }} />
+              Visualizza riepilogo utlimo ordine
+            </Button>
+          </Grid>
+          <Grid item sx={{ width: "100%" }}>
+            <List
+              sx={{ boxShadow: 2, mt: 3, pb: 0 }}
+              subheader={
+                <ListSubheader sx={{ fontSize: 20 }}>Prodotti</ListSubheader>
+              }
+            >
+              {products.map((product, i) => (
+                <ListItem
+                  key={i}
+                  sx={{
+                    justifyContent: "space-between",
+                    display: "flex",
+                    bgcolor: i % 2 ? "white" : "whitesmoke",
+                  }}
+                >
+                  <ListItemText>{product.sku}</ListItemText>
+                  <ListItemText sx={{ textAlign: "end" }}>
+                    {"" + product.label}
+                  </ListItemText>
+                  <ListItemText sx={{ textAlign: "end" }}>
+                    {product.price + " $"}
+                  </ListItemText>
+                </ListItem>
+              ))}
+            </List>
+            <Typography sx={{ pr: 2, mt: 5, textAlign: "end" }}>
+              {"Totale: " +
+                products.reduce((acc, e) => (acc += e.price), 0) +
+                " $"}
+            </Typography>
+          </Grid>
+        </Grid>
+
+        <Grid
+          item
+          container
           sx={{
             overflowY: products.length === 1 ? "hidden" : "scroll",
             scrollbarWidth: "none",
-            px: 20,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            maxHeight: 650,
           }}
-          height={500}
-          spacing={2}
-          mx={100}
+          md={12}
+          lg={6}
         >
-          {products.map((product, i) => (
-            <Product
-              src={product.src}
-              label={product.label}
-              price={product.price}
-              key={i}
-              heigth={250}
-              handleDeleteFromCart={() => handleDeleteFromCart(i)}
-            />
-          ))}
-        </Stack>
-        <Stack
-          spacing={2}
-          direction="column"
-          justifyContent="space-between"
-          mt={5}
-          px={15}
-        >
-          <Button
-            variant="contained"
-            onClick={showCheckoutDialog}
-            sx={{ textTransform: "none", p: 5, fontSize: 15 }}
-            disabled={!products.length}
-          >
-            <ShoppingCartCheckoutIcon sx={{ mr: 2 }} /> Effettua il checkout
-          </Button>
-          <Button
-            variant="contained"
-            onClick={showOrderRecapDialog}
-            disabled={!lastOrder}
-            sx={{ textTransform: "none", p: 5, fontSize: 15 }}
-          >
-            <ReceiptLongIcon sx={{ mr: 2 }} />
-            Visualizza riepilogo utlimo ordine
-          </Button>
-          <List
-            subheader={
-              <ListSubheader sx={{ fontSize: 20 }}>Prodotti</ListSubheader>
-            }
-          >
+          <Grid item sx={{ pt: 150 }}>
             {products.map((product, i) => (
-              <ListItem
+              <Product
+                src={product.src}
+                label={product.label}
+                price={product.price}
                 key={i}
-                sx={{
-                  alignItems: "center",
-                  justifyContent: "space-evenly",
-                  display: "flex",
-                }}
-              >
-                <ListItemText>{product.sku}</ListItemText>
-                <ListItemText>{"  " + product.label}</ListItemText>
-                <ListItemText>{product.price + " $"}</ListItemText>
-              </ListItem>
+                heigth={250}
+                handleDeleteFromCart={() => handleDeleteFromCart(i)}
+              />
             ))}
-          </List>
-          <Typography>
-            {"Totale: " +
-              products.reduce((acc, e) => (acc += e.price), 0) +
-              " $"}
-          </Typography>
-        </Stack>
-      </Stack>
+          </Grid>
+        </Grid>
+      </Grid>
 
       <CheckoutDialogForm />
       <OrderRecapDialog />

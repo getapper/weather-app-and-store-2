@@ -19,7 +19,7 @@ export const useStoreHomeScene = () => {
     return [
       {
         src: tshirtbianco,
-        label: "Maglia  bianca",
+        label: "Maglia bianca",
         price: 10,
         id: 0,
         descrizione: "bla bla bvaldasdhuhiuawdhadwaddaw",
@@ -29,7 +29,7 @@ export const useStoreHomeScene = () => {
       },
       {
         src: tshirtblue,
-        label: "Maglia  blu",
+        label: "Maglia blu",
         price: 15,
         id: 1,
         descrizione: "bla bla bvaldasdhuhiuawdhadwaddaw",
@@ -49,7 +49,7 @@ export const useStoreHomeScene = () => {
       },
       {
         src: tshirtnera,
-        label: "Maglia  nera",
+        label: "Maglia nera",
         price: 11,
         id: 3,
         descrizione: "bla bla bvaldasdhuhiuawdhadwaddaw",
