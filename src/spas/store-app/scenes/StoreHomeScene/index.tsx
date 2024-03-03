@@ -23,7 +23,7 @@ export const StoreHomeScene = memo(({}: StoreHomeSceneProps) => {
                 key={elem.id}
                 alt={elem.label}
                 handleAddToCart={() => handleAddToCart(elem)}
-                goToProductInfo={() => openProductDetails(elem.id.toString())}
+                goToProductInfo={() => openProductDetails(elem)}
               />
             </Grid>
           ))}

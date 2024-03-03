@@ -113,10 +113,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 75px;
-  height: 75px;
-  padding: 25px 10px;
-  margin-left: 16px;
+  padding: 20px;
   transform: translateZ(0);
   border-radius: var(--border-radius);
   overflow: hidden;

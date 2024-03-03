@@ -4,6 +4,7 @@ import { useCallback } from "react";
 
 export const useProductDetailsScene = () => {
   const product = useSelector(selectors.getCurrentProduct);
+  console.log(product);
   const dispatch = useDispatch();
   const handleAddToCart = useCallback(() => {
     dispatch(actions.addItemToCart(product));

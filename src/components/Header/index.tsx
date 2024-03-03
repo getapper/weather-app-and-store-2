@@ -23,7 +23,6 @@ export const Header = memo(({}: HeaderProps) => {
         sx={{
           alignItems: "center",
           justifyContent: "space-between",
-          bgcolor: "lightblue",
           boxShadow: 2,
           position: "sticky",
         }}
@@ -34,11 +33,12 @@ export const Header = memo(({}: HeaderProps) => {
         <Stack spacing={2} p={2}>
           <NavButton label="" />
           <Button
-            variant="contained"
-            sx={{ p: 2 }}
+            color="secondary"
+            sx={{ p: 3, borderRadius: 999 }}
             onClick={() => toggleDrawer(true)}
+            variant="contained"
           >
-            <ShoppingCartIcon />
+            <ShoppingCartIcon color="primary" />
           </Button>
           <Drawer
             anchor="right"
@@ -54,6 +54,7 @@ export const Header = memo(({}: HeaderProps) => {
                   icon={<ShoppingCartIcon />}
                 />
               </Button>
+              {/* TODO: qui sarebbe carino fare una List con gli avatar con foto prodotto https://mui.com/material-ui/react-list/ */}
               {products?.map((product, i) => (
                 <Product
                   src={product.src}

@@ -45,7 +45,7 @@ export default function Home() {
             height={37}
             priority
           />
-          <div className={styles.thirteen}>
+          <div className={styles.thirteen} style={{ marginLeft: 20 }}>
             <Image
               src="/thirteen.svg"
               alt="13"
@@ -56,18 +56,23 @@ export default function Home() {
           </div>
         </div>
         <>
-          <Button
-            variant="contained"
-            onClick={() => (window.location.href = "/weather-app")}
-          >
-            Wheater App
-          </Button>
-          <Button
-            variant="contained"
-            onClick={() => (window.location.href = "/store-app")}
-          >
-            Store App
-          </Button>
+          <div className={styles.thirteen}>
+            <Button
+              variant="text"
+              onClick={() => (window.location.href = "/weather-app")}
+            >
+              Wheater App
+            </Button>
+          </div>
+          <div className={styles.thirteen}>
+            <Button
+              variant="text"
+              color="secondary"
+              onClick={() => (window.location.href = "/store-app")}
+            >
+              Store App
+            </Button>
+          </div>
         </>
       </main>
     </>

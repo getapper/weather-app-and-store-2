@@ -1,4 +1,4 @@
-import theme from "@/themes";
+import theme from "@/themes/index";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actions, selectors } from "@/spas/store-app/redux-store";

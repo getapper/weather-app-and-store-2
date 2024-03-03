@@ -36,8 +36,8 @@ export const CheckoutDialogForm = memo(({}: CheckoutDialogFormProps) => {
         <Dialog open={isOpen} onClose={onClose} fullWidth>
           <DialogTitle
             sx={{
-              bgcolor: "lightblue",
-              color: "white",
+              bgcolor: "secondary",
+              color: "primary",
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",

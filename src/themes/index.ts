@@ -4,10 +4,31 @@ export default responsiveFontSizes(
   createTheme({
     palette: {
       primary: {
-        main: "#71B9DA",
+        main: "#ffffff",
       },
       secondary: {
-        main: "#6291A8",
+        main: "#8c2f8f",
+      },
+      text: {
+        primary: "#8c2f8f",
+        secondary: "#fff",
+      },
+    },
+    components: {
+      /* MuiIcon: {
+        styleOverrides: {
+          root: {
+            color: "secondary",
+          },
+        },
+      }, */
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            color: "primary",
+            backgroundColor: "secondary",
+          },
+        },
       },
     },
   }),

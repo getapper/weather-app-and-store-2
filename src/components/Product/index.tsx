@@ -1,7 +1,14 @@
 import React, { CSSProperties, memo } from "react";
 import { useProduct } from "./index.hooks";
 import Image, { StaticImageData } from "next/image";
-import { Button, Stack, StackProps, Tooltip, Typography } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Stack,
+  StackProps,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { RemoveShoppingCartRounded } from "@mui/icons-material";
@@ -21,6 +28,7 @@ type ProductProps = {
   width?: number;
   handleAddToCart?: () => void;
   handleDeleteFromCart?: () => void;
+  isDetail?: boolean;
 } & StackProps;
 
 const imageStyle: CSSProperties = {
@@ -44,13 +52,16 @@ const Product: React.FC<ProductProps> = ({
   width,
   handleAddToCart,
   handleDeleteFromCart,
+  isDetail,
   ...props
 }) => {
   const { showCheckoutDialog } = useProduct();
 
   return (
-    <Stack>
-      <Stack
+    <Grid container direction="row">
+      <Grid
+        container
+        item
         direction="column"
         sx={{
           justifyContent: "center",
@@ -60,6 +71,8 @@ const Product: React.FC<ProductProps> = ({
           position: "relative",
         }}
         spacing={1}
+        xs={12}
+        md={6}
       >
         <Image
           src={src}
@@ -68,12 +81,12 @@ const Product: React.FC<ProductProps> = ({
           alt={alt}
           style={imageStyle}
         />
-        {!!price && (
+        {!!price && !isDetail && (
           <Typography
             sx={{
               position: "absolute",
-              bgcolor: "white",
-              color: "black",
+              bgcolor: "secondary",
+              color: "primary",
               px: 3,
               py: 1,
               bottom: 65,
@@ -84,12 +97,12 @@ const Product: React.FC<ProductProps> = ({
             {price + " $"}
           </Typography>
         )}
-        {label && (
+        {label && !isDetail && (
           <Typography
             sx={{
               position: "absolute",
-              bgcolor: "white",
-              color: "black",
+              bgcolor: "secondary",
+              color: "primary",
               px: 3,
               py: 1,
               top: 20,
@@ -116,8 +129,7 @@ const Product: React.FC<ProductProps> = ({
                 }}
                 onClick={handleAddToCart}
               >
-                <AddShoppingCartIcon />
-                {/* TODO: change color with theme */}
+                <AddShoppingCartIcon color="primary" />
               </Button>
             </Tooltip>
           )}
@@ -131,7 +143,7 @@ const Product: React.FC<ProductProps> = ({
                 }}
                 onClick={goToProductInfo}
               >
-                <InfoIcon /> {/* TODO: change color with theme */}
+                <InfoIcon color="primary" />
               </Button>
             </Tooltip>
           )}
@@ -145,44 +157,61 @@ const Product: React.FC<ProductProps> = ({
                 }}
                 onClick={handleDeleteFromCart}
               >
-                <RemoveShoppingCartRounded />{" "}
-                {/* TODO: change color with theme */}
+                <RemoveShoppingCartRounded color="primary" />
               </Button>
             </Tooltip>
           )}
         </Stack>
-      </Stack>
-
+      </Grid>
       {sku && description && (
-        <Stack sx={{ px: 30, mt: 5 }} spacing={3}>
-          <Typography>{"Nome prodotto: " + label}</Typography>
-          <Typography>{"Prezzo: " + price}</Typography>
-          <Typography>{"SKU: " + sku}</Typography>
-          <Typography>{description}</Typography>
-          {disponibile !== undefined && (
-            <Typography sx={{ color: disponibile ? "green" : "red" }}>
-              {disponibile ? "Disponibile" : "Non diponibile"}
-            </Typography>
-          )}
-          <Button
-            variant="contained"
-            onClick={handleAddToCart}
-            disabled={!disponibile}
-            sx={{ textTransform: "none", p: 5, fontSize: 15 }}
-          >
-            <AddShoppingCartIcon sx={{ mr: 3 }} />
-            Aggiungi al carrello
-          </Button>
-          <Button
-            variant="contained"
-            onClick={showCheckoutDialog}
-            sx={{ textTransform: "none", p: 5, fontSize: 15 }}
-          >
-            <ShoppingCartCheckoutIcon sx={{ mr: 2 }} /> Effettua il checkout
-          </Button>
-        </Stack>
+        <Grid
+          item
+          container
+          spacing={3}
+          xs={12}
+          md={6}
+          sx={{ p: 10, pt: { md: 5, xs: 0 } }}
+        >
+          <Grid item color="black">
+            {/* TODO: improve */}
+            <Stack spacing={2}>
+              <Typography>{"Nome prodotto: " + label}</Typography>
+              <Typography>{"Prezzo: " + price + " $"}</Typography>
+              <Typography>{"SKU: " + sku}</Typography>
+              <Typography>{description}</Typography>
+              {disponibile !== undefined && (
+                <Typography sx={{ color: disponibile ? "green" : "red" }}>
+                  {disponibile ? "Disponibile" : "Non diponibile"}
+                </Typography>
+              )}
+            </Stack>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleAddToCart}
+              disabled={!disponibile}
+              sx={{ textTransform: "none", p: 5, fontSize: 15, width: "100%" }}
+            >
+              <AddShoppingCartIcon sx={{ mr: 3 }} />
+              Aggiungi al carrello
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              color="secondary"
+              variant="outlined"
+              onClick={showCheckoutDialog}
+              sx={{ textTransform: "none", p: 5, fontSize: 15, width: "100%" }}
+            >
+              <ShoppingCartCheckoutIcon sx={{ mr: 2 }} /> Effettua il checkout
+            </Button>
+          </Grid>
+        </Grid>
       )}
-    </Stack>
+    </Grid>
   );
 };
 

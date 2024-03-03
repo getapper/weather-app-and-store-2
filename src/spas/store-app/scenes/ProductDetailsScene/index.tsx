@@ -25,8 +25,11 @@ export const ProductDetailsScene = memo(({}: ProductDetailsSceneProps) => {
           sku={product?.sku}
           description={product?.description}
           disponibile={product.disponibile}
+          price={product?.price}
+          label={product?.label}
           heigth={600}
           width={400}
+          isDetail={true}
           sx={{ "& .handleAddToCartBtn": { display: "none" } }}
           handleAddToCart={handleAddToCart}
         />

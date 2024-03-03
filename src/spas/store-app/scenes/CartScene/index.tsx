@@ -67,9 +67,11 @@ export const CartScene = memo(({}: CartSceneProps) => {
           <Grid item sx={{ width: "100%" }}>
             <List
               sx={{ boxShadow: 2, mt: 3, pb: 0 }}
-              subheader={
-                <ListSubheader sx={{ fontSize: 20 }}>Prodotti</ListSubheader>
-              }
+              /* subheader={
+                <ListSubheader sx={{ fontSize: 20 }} color="secondary">
+                  Prodotti
+                </ListSubheader>
+              } */
             >
               {products.map((product, i) => (
                 <ListItem

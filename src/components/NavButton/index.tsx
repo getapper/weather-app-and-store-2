@@ -27,11 +27,14 @@ export const NavButton = memo(
             justifyContent: label !== "" ? "flex-start" : "center",
             display: "flex",
             py: 2,
+            p: label === "" ? 3 : 2,
+            borderRadius: label === "" ? 999 : 10,
           }}
+          color="secondary"
         >
-          {icon ? <>{icon}</> : <HomeIcon />}
+          {icon ? <>{icon}</> : <HomeIcon color="primary" />}
           {label !== "" ? (
-            <Typography ml={2} textTransform="none">
+            <Typography ml={2} textTransform="none" color="primary">
               {label}
             </Typography>
           ) : (
